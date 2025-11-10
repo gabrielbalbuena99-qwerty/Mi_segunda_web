@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IESA - Instituto de Estudios Superiores Argentino</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <svg class="logo" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="77" y="77" width="310" height="370" fill="none" stroke="#1a237e" stroke-width="15"/>
+                    <path d="M 235 440 L 77 370 L 77 77 L 387 77 L 387 370 Z" fill="none" stroke="#1a237e" stroke-width="15"/>
+                    <text x="130" y="150" font-family="Arial" font-size="60" font-weight="bold" fill="#1a237e">IESA</text>
+                    <rect x="143" y="183" width="174" height="120" fill="none" stroke="#1a237e" stroke-width="8"/>
+                    <path d="M 175 220 L 315 220 M 235 220 L 235 270" stroke="#1a237e" stroke-width="5"/>
+                    <rect x="175" y="245" width="25" height="35" fill="none" stroke="#1a237e" stroke-width="5"/>
+                    <rect x="217" y="245" width="25" height="35" fill="none" stroke="#1a237e" stroke-width="5"/>
+                    <rect x="259" y="245" width="25" height="35" fill="none" stroke="#1a237e" stroke-width="5"/>
+                    <rect x="290" y="245" width="12" height="35" fill="none" stroke="#1a237e" stroke-width="5"/>
+                    <path d="M 150 310 Q 235 350 320 310 Q 235 380 150 310" fill="none" stroke="#1a237e" stroke-width="8"/>
+                </svg>
+                <div>
+                    <h1>IESA</h1>
+                    <p style="font-size: 0.9rem; opacity: 0.9;">Instituto de Estudios Superiores Argentino</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <ul>
+            <li><a href="#home" class="nav-link active" onclick="showSection('home')">Home</a></li>
+            <li><a href="#cargar" class="nav-link" onclick="showSection('cargar')">Cargar Alumno</a></li>
+            <li><a href="#listado" class="nav-link" onclick="showSection('listado')">Listado de Alumnos</a></li>
+            <li><a href="#historia" class="nav-link" onclick="showSection('historia')">Historia</a></li>
+            <li><a href="#ia" class="nav-link" onclick="showSection('ia')">Unidad 6 - IA Generativa</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- HOME -->
+        <section id="home" class="section active">
+            <h2 style="text-align: center; margin-bottom: 30px;">Bienvenidos al IESA</h2>
+            
+            <div class="weather-widget">
+                <div class="city-selector">
+                    <button class="city-btn active" onclick="selectCity('Posadas')">Posadas</button>
+                    <button class="city-btn" onclick="selectCity('Corrientes')">Corrientes</button>
+                    <button class="city-btn" onclick="selectCity('Buenos Aires')">Buenos Aires</button>
+                </div>
+                <div class="weather-info">
+                    <div id="cityName" style="font-size: 1.5rem; font-weight: 600;">Posadas, Misiones</div>
+                    <div id="currentDate" style="opacity: 0.9; margin-top: 5px;"></div>
+                    <div id="weatherIcon" class="weather-icon">☀️</div>
+                    <div id="temperature" class="temperature">28°C</div>
+                    <div id="description" style="font-size: 1.2rem; margin: 10px 0;">Despejado</div>
+                    <div class="weather-details">
+                        <div class="weather-detail">
+                            <div class="weather-detail-label">Humedad</div>
+                            <div id="humidity" class="weather-detail-value">65%</div>
+                        </div>
+                        <div class="weather-detail">
+                            <div class="weather-detail-label">Viento</div>
+                            <div id="wind" class="weather-detail-value">12 km/h</div>
+                        </div>
+                        <div class="weather-detail">
+                            <div class="weather-detail-label">Sensación</div>
+                            <div id="feelsLike" class="weather-detail-value">30°C</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; max-width: 800px; margin: 0 auto; padding: 40px 20px;">
+                <h3>Excelencia Educativa desde 2003</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 20px;">
+                    El IESA es un establecimiento terciario de enseñanza pública de gestión privada, 
+                    fundado en 2003 en Posadas, Misiones. Nos dedicamos a brindar formación profesional 
+                    de calidad, preparando a nuestros estudiantes para enfrentar los desafíos del mundo 
+                    laboral actual con excelencia y ética.
+                </p>
+            </div>
+        </section>
+
+        <!-- CARGAR ALUMNO -->
+        <section id="cargar" class="section">
+            <h2>Cargar Nuevo Alumno</h2>
+            <div id="successMsg" class="success-message">¡Alumno guardado exitosamente!</div>
+            <div class="form-container">
+                <form id="alumnoForm">
+                    <div class="form-group">
+                        <label>Nombre *</label>
+                        <input type="text" id="nombre" required>
+                        <span class="error-message" id="nombreError">El nombre es requerido</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Apellido *</label>
+                        <input type="text" id="apellido" required>
+                        <span class="error-message" id="apellidoError">El apellido es requerido</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" id="email" required>
+                        <span class="error-message" id="emailError">Email inválido</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Teléfono *</label>
+                        <input type="tel" id="telefono" required>
+                        <span class="error-message" id="telefonoError">El teléfono es requerido</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Curso *</label>
+                        <select id="curso" required>
+                            <option value="">Seleccione un curso</option>
+                            <option value="Desarrollo Web">Desarrollo Web</option>
+                            <option value="Diseño Gráfico">Diseño Gráfico</option>
+                            <option value="Marketing Digital">Marketing Digital</option>
+                            <option value="Administración">Administración</option>
+                        </select>
+                        <span class="error-message" id="cursoError">Debe seleccionar un curso</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Fecha de Nacimiento *</label>
+                        <input type="date" id="fechaNacimiento" required>
+                        <span class="error-message" id="fechaError">La fecha es requerida</span>
+                    </div>
+
+                    <button type="submit" class="btn">Guardar Alumno</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- LISTADO DE ALUMNOS -->
+        <section id="listado" class="section">
+            <h2>Listado de Alumnos por Curso</h2>
+            <div id="alumnosContainer"></div>
+        </section>
+
+        <!-- HISTORIA -->
+        <section id="historia" class="section">
+            <div class="historia-content">
+                <h2>Historia de la Institución</h2>
+                
+                <div class="historia-images">
+                    <img src="data:image/svg+xml,%3Csvg viewBox='0 0 500 500' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%231a237e' width='500' height='500'/%3E%3Crect x='77' y='77' width='310' height='370' fill='none' stroke='white' stroke-width='15'/%3E%3Cpath d='M 235 440 L 77 370 L 77 77 L 387 77 L 387 370 Z' fill='none' stroke='white' stroke-width='15'/%3E%3Ctext x='130' y='150' font-family='Arial' font-size='60' font-weight='bold' fill='white'%3EIESA%3C/text%3E%3Crect x='143' y='183' width='174' height='120' fill='none' stroke='white' stroke-width='8'/%3E%3Cpath d='M 175 220 L 315 220 M 235 220 L 235 270' stroke='white' stroke-width='5'/%3E%3Crect x='175' y='245' width='25' height='35' fill='none' stroke='white' stroke-width='5'/%3E%3Crect x='217' y='245' width='25' height='35' fill='none' stroke='white' stroke-width='5'/%3E%3Crect x='259' y='245' width='25' height='35' fill='none' stroke='white' stroke-width='5'/%3E%3Crect x='290' y='245' width='12' height='35' fill='none' stroke='white' stroke-width='5'/%3E%3Cpath d='M 150 310 Q 235 350 320 310 Q 235 380 150 310' fill='none' stroke='white' stroke-width='8'/%3E%3C/svg%3E" alt="Logo IESA" class="historia-image">
+                    <img src="data:image/svg+xml,%3Csvg viewBox='0 0 800 400' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23607d8b' width='800' height='400'/%3E%3Crect x='100' y='100' width='600' height='200' fill='%234a5f6a'/%3E%3Crect x='150' y='150' width='200' height='150' fill='%23263238'/%3E%3Crect x='450' y='150' width='200' height='150' fill='%23263238'/%3E%3Ccircle cx='250' cy='225' r='50' fill='%23667eea'/%3E%3Ctext x='400' y='240' font-family='Arial' font-size='48' font-weight='bold' fill='white'%3EIESA%3C/text%3E%3C/svg%3E" alt="Edificio IESA" class="historia-image">
+                </div>
+
+                <h3>Nuestra Historia</h3>
+                <p style="margin: 20px 0; font-size: 1.1rem; line-height: 1.8;">
+                    El IESA es un establecimiento terciario de enseñanza pública de gestión privada, 
+                    fundado en 2003 en Posadas, Misiones. Durante más de dos décadas, nos hemos dedicado 
+                    a brindar formación profesional exitosa, convirtiéndonos en una institución de referencia 
+                    en la región.
+                </p>
+
+                <p style="margin: 20px 0; font-size: 1.1rem; line-height: 1.8;">
+                    Nuestro compromiso es con la excelencia educativa y la formación integral de nuestros 
+                    estudiantes, preparándolos no solo con conocimientos técnicos, sino también con valores 
+                    y habilidades que les permitan enfrentar con éxito los desafíos del mundo laboral actual.
+                </p>
+
+                <h3>Nuestra Misión</h3>
+                <ul class="mision-list">
+                    <li><strong>Hacer que el trabajo sea inspirador y gratificante:</strong> Creemos que la educación debe motivar y apasionar, preparando profesionales que amen lo que hacen.</li>
+                    <li><strong>Formar líderes:</strong> Desarrollamos las capacidades de liderazgo en nuestros estudiantes para que sean agentes de cambio en sus comunidades.</li>
+                    <li><strong>Excelencia y ética:</strong> Mantenemos los más altos estándares académicos acompañados de una sólida formación en valores.</li>
+                    <li><strong>Comunidad inclusiva:</strong> Fomentamos un ambiente de respeto, diversidad y colaboración donde todos tienen oportunidades de crecimiento.</li>
+                    <li><strong>Vanguardia educativa:</strong> Nos mantenemos actualizados con las últimas tendencias y tecnologías para ofrecer una educación de vanguardia.</li>
+                </ul>
+
+                <h3>Nuestro Compromiso</h3>
+                <p style="margin: 20px 0; font-size: 1.1rem; line-height: 1.8;">
+                    En el IESA, cada estudiante es importante. Trabajamos día a día para proporcionar 
+                    las herramientas, el conocimiento y el apoyo necesarios para que nuestros alumnos 
+                    alcancen sus metas profesionales y personales. Nuestra trayectoria de años de 
+                    experiencia nos respalda y nos impulsa a seguir mejorando constantemente.
+                </p>
+            </div>
+        </section>
+
+        <!-- IA GENERATIVA -->
+        <section id="ia" class="section">
+            <div class="ia-section">
+                <h2>Unidad 6 - Inteligencia Artificial Generativa</h2>
+
+                <div class="ia-card">
+                    <h3 style="color: white;">¿Qué es la IA Generativa?</h3>
+                    <p style="margin-top: 15px; line-height: 1.8;">
+                        La Inteligencia Artificial Generativa es una rama de la IA que se especializa en 
+                        crear contenido nuevo y original. A diferencia de los sistemas de IA tradicionales 
+                        que clasifican o analizan datos existentes, la IA generativa puede producir texto, 
+                        imágenes, código, música y otros tipos de contenido a partir de patrones aprendidos 
+                        de grandes conjuntos de datos.
+                    </p>
+                </div>
+
+                <h3>Principales Herramientas de IA Generativa</h3>
+                <div class="herramientas-grid">
+                    <div class="herramienta-card">
+                        <h4>🤖 ChatGPT</h4>
+                        <p>
+                            Desarrollado por OpenAI, es un modelo de lenguaje capaz de mantener conversaciones, 
+                            responder preguntas, generar código, escribir textos creativos y asistir en 
+                            múltiples tareas de programación y escritura.
+                        </p>
+                    </div>
+
+                    <div class="herramienta-card">
+                        <h4>💬 Microsoft Copilot</h4>
+                        <p>
+                            Integrado en herramientas de Microsoft, combina IA conversacional con capacidades 
+                            de búsqueda y generación de contenido. Útil para productividad, investigación 
+                            y desarrollo de software.
+                        </p>
+                    </div>
+
+                    <div class="herramienta-card">
+                        <h4>🎨 DALL-E</h4>
+                        <p>
+                            También de OpenAI, genera imágenes a partir de descripciones textuales. 
+                            Revolucionario para diseñadores y creativos, permite crear arte digital 
+                            único mediante prompts descriptivos.
+                        </p>
+                    </div>
+
+                    <div class="herramienta-card">
+                        <h4>✨ Claude</h4>
+                        <p>
+                            Desarrollado por Anthropic, destaca por conversaciones naturales, análisis 
+                            profundo de documentos y razonamiento complejo. Excelente para tareas que 
+                            requieren comprensión contextual detallada.
+                        </p>
+                    </div>
+                </div>
+
+                <h3>Ejemplos de Prompts Útiles para Desarrollo Web</h3>
+                
+                <div class="prompt-example">
+                    <strong>Prompt 1 - Generar código JavaScript:</strong><br>
+                    "Crea una función en JavaScript que valide un formulario con campos de nombre, 
+                    email y teléfono. Debe mostrar mensajes de error específicos y retornar true 
+                    si todo es válido."
+                </div>
+
+                <div class="prompt-example">
+                    <strong>Prompt 2 - Diseño CSS:</strong><br>
+                    "Genera CSS para un card component moderno con efecto glassmorphism, sombras 
+                    suaves, border-radius y una animación hover que eleve ligeramente la tarjeta."
+                </div>
+
+                <div class="prompt-example">
+                    <strong>Prompt 3 - Debugging:</strong><br>
+                    "Este código no funciona: [pegar código]. ¿Puedes identificar el error y 
+                    explicar por qué está fallando? Proporciona la versión corregida."
+                </div>
+
+                <div class="prompt-example">
+                    <strong>Prompt 4 - Optimización:</strong><br>
+                    "Tengo este código que funciona pero es lento. ¿Puedes optimizarlo para mejor 
+                    rendimiento y explicar qué cambios hiciste y por qué mejoran la eficiencia?"
+                </div>
+
+                <h3>Análisis de Aplicación Web Real con IA</h3>
+                <div style="background: #f5f5f5; padding: 30px; border-radius: 10px; margin: 20px 0;">
+                    <h4 style="color: #1a237e; margin-bottom: 15px;">Caso de Estudio: GitHub Copilot</h4>
+                    <p style="line-height: 1.8; margin-bottom: 15px;">
+                        <strong>Descripción:</strong> GitHub Copilot es una herramienta de asistencia de código 
+                        impulsada por IA que se integra directamente en editores de código como Visual Studio Code. 
+                        Utiliza el modelo Codex de OpenAI para sugerir líneas completas o bloques de código en 
+                        tiempo real.
+                    </p>
+                    <p style="line-height: 1.8; margin-bottom: 15px;">
+                        <strong>Cómo funciona:</strong> Analiza el contexto del código que estás escribiendo, 
+                        incluyendo comentarios, nombres de funciones y código circundante, para generar sugerencias 
+                        relevantes. Aprende de millones de repositorios públicos de GitHub.
+                    </p>
+                    <p style="line-height: 1.8; margin-bottom: 15px;">
+                        <strong>Impacto en desarrollo web:</strong> Los desarrolladores reportan aumentos de 
+                        productividad del 55% en tareas de codificación. Es especialmente útil para código 
+                        repetitivo, implementación de patrones comunes y exploración de APIs desconocidas.
+                    </p>
+                    <p style="line-height: 1.8;">
+                        <strong>Limitaciones:</strong> Puede sugerir código obsoleto, con problemas de seguridad 
+                        o que no sigue las mejores prácticas. Requiere revisión humana y comprensión del código 
+                        generado.
+                    </p>
+                </div>
+
+                <h3>Uso Ético y Responsable de la IA</h3>
+                <div style="background: white; border: 2px solid #1a237e; padding: 25px; border-radius: 10px; margin: 20px 0;">
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 10px 0; border-bottom: 1px solid #e0e0e0;">
+                            ✓ <strong>Verificar siempre el código generado:</strong> No confíes ciegamente en la IA. 
+                            Revisa, prueba y comprende todo el código antes de implementarlo.
+                        </li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid #e0e0e0;">
+                            ✓ <strong>Respetar derechos de autor:</strong> La IA puede generar código similar a 
+                            código con licencia. Asegúrate de cumplir con las licencias de software.
+                        </li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid #e0e0e0;">
+                            ✓ <strong>Proteger datos sensibles:</strong> No compartas información confidencial, 
+                            claves API o datos personales con herramientas de IA.
+                        </li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid #e0e0e0;">
+                            ✓ <strong>Considerar el sesgo:</strong> Los modelos de IA pueden contener sesgos de 
+                            sus datos de entrenamiento. Sé crítico y consciente de esto.
+                        </li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid #e0e0e0;">
+                            ✓ <strong>Fomentar la accesibilidad:</strong> Usa IA para crear aplicaciones más 
+                            inclusivas y accesibles para todos los usuarios.
+                        </li>
+                        <li style="padding: 10px 0;">
+                            ✓ <strong>Aprender continuamente:</strong> Usa la IA como herramienta de aprendizaje, 
+                            no como sustituto del aprendizaje. Comprende el "por qué" detrás del código.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="debate-box">
+                    <h3 style="color: #f57c00; margin-bottom: 15px;">⚡ Debate: ¿La IA reemplaza o potencia al desarrollador?</h3>
+                    
+                    <h4 style="margin-top: 20px; color: #333;">La IA como Herramienta de Potenciación</h4>
+                    <p style="line-height: 1.8; margin: 15px 0;">
+                        La evidencia actual sugiere que <strong>la IA potencia, no reemplaza</strong> al desarrollador. 
+                        Aquí está el por qué:
+                    </p>
+                    
+                    <p style="line-height: 1.8; margin: 15px 0;">
+                        <strong>1. Automatización de tareas repetitivas:</strong> La IA libera tiempo al automatizar 
+                        código boilerplate, permitiendo a los desarrolladores concentrarse en problemas complejos 
+                        y decisiones arquitectónicas que requieren creatividad y pensamiento crítico.
+                    </p>
+                    
+                    <p style="line-height: 1.8; margin: 15px 0;">
+                        <strong>2. El contexto es irreemplazable:</strong> La IA carece de comprensión del contexto 
+                        empresarial, requisitos específicos del proyecto, restricciones técnicas particulares y 
+                        las necesidades reales de los usuarios finales. Un desarrollador experimentado aporta 
+                        este conocimiento crucial.
+                    </p>
+                    
+                    <p style="line-height: 1.8; margin: 15px 0;">
+                        <strong>3. Pensamiento crítico y depuración:</strong> Cuando la IA genera código con errores 
+                        (lo cual es común), se necesita un desarrollador para identificar el problema, comprender 
+                        por qué falló y aplicar la solución correcta. La IA puede sugerir fixes, pero no entiende 
+                        las implicaciones profundas.
+                    </p>
+                    
+                    <p style="line-height: 1.8; margin: 15px 0;">
+                        <strong>4. Evolución del rol:</strong> En lugar de eliminar desarrolladores, la IA está 
+                        transformando el rol hacia uno más estratégico. Los desarrolladores del futuro serán 
+                        arquitectos de soluciones, verificadores de calidad de código IA y especialistas en 
+                        integración de sistemas complejos.
+                    </p>
+                    
+                    <p style="line-height: 1.8; margin: 15px 0;">
+                        <strong>5. La creatividad humana es insustituible:</strong> La innovación, el diseño de 
+                        experiencias de usuario excepcionales y la creación de soluciones completamente nuevas 
+                        requieren intuición humana, empatía y creatividad que la IA actual no posee.
+                    </p>
+
+                    <h4 style="margin-top: 25px; color: #333;">Conclusión</h4>
+                    <p style="line-height: 1.8; margin: 15px 0;">
+                        La IA es una herramienta poderosa que amplifica las capacidades del desarrollador, similar 
+                        a cómo el IDE, los frameworks y el control de versiones revolucionaron el desarrollo de 
+                        software. Los desarrolladores que aprendan a trabajar efectivamente con IA serán más 
+                        productivos y valiosos. Los que la ignoren se quedarán atrás. Pero aquellos que piensen 
+                        que la IA puede reemplazar completamente el juicio, la experiencia y la creatividad humana 
+                        malinterpretan tanto las capacidades de la IA como la naturaleza del desarrollo de software.
+                    </p>
+                    
+                    <p style="line-height: 1.8; margin: 15px 0; font-style: italic; font-weight: 600;">
+                        "La mejor herramienta no es la que trabaja por ti, sino la que te permite hacer mejor 
+                        trabajo. La IA generativa es exactamente eso: una herramienta extraordinaria en manos 
+                        de desarrolladores capacitados."
+                    </p>
+                </div>
+
+                <h3>Recursos para Aprender Más</h3>
+                <div style="background: #e3f2fd; padding: 20px; border-radius: 10px; border-left: 4px solid #2196f3;">
+                    <ul style="line-height: 2;">
+                        <li>OpenAI Documentation: <a href="https://platform.openai.com/docs" style="color: #1976d2;">platform.openai.com/docs</a></li>
+                        <li>GitHub Copilot Documentation: <a href="https://docs.github.com/copilot" style="color: #1976d2;">docs.github.com/copilot</a></li>
+                        <li>Anthropic Claude Documentation: <a href="https://docs.anthropic.com" style="color: #1976d2;">docs.anthropic.com</a></li>
+                        <li>Prompt Engineering Guide: <a href="https://www.promptingguide.ai" style="color: #1976d2;">promptingguide.ai</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 IESA - Instituto de Estudios Superiores Argentino</p>
+        <p>Posadas, Misiones - Argentina</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
