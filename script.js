@@ -111,13 +111,14 @@ document.getElementById('alumnoForm').addEventListener('submit', function(e) {
         const input = document.getElementById(field);
         const error = document.getElementById(field + 'Error');
         
+        // 🔽 BLOQUE CORRECTOR (evita errores si falta el span)
         if (!input.value.trim()) {
             input.classList.add('error');
-            error.style.display = 'block';
+            if (error) error.style.display = 'block';
             isValid = false;
         } else {
             input.classList.remove('error');
-            error.style.display = 'none';
+            if (error) error.style.display = 'none';
         }
     });
 
@@ -258,4 +259,5 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Actualizar fecha cada minuto
     setInterval(updateDate, 60000);
+
 });
